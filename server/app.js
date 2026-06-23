@@ -24,12 +24,20 @@ app.use('/api/v1/attempts', attemptRoutes);
 app.use('/api/v1/leaderboard', leaderboardRoutes);
 app.use('/api/v1/analytics', analyticsRoutes);
 
-// Base Route
-app.get('/', (req, res) => {
+// Serve static frontend build (MUST be after API routes)
+app.use(express.static(path.join(__dirname, '../client/dist')));
+
+// Base Route for API
+app.get('/api', (req, res) => {
   res.json({
     success: true,
     message: 'Welcome to the Practice CAD API Server.'
   });
+});
+
+// Fallback to index.html for React Router (MUST be last before error handler)
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/dist/index.html'));
 });
 
 // Global Error Handler

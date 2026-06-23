@@ -6,9 +6,13 @@
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js",
-    "seed": "node utils/seed.js"
+    "seed": "node utils/seed.js",
+    "build": "cd ../client && npm install && npm run build && cd ../server"
   },
-  "keywords": [],
+  "engines": {
+    "node": "18.x",
+    "npm": "9.x"
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
