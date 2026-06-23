@@ -10,8 +10,7 @@
     "build": "cd ../client && npm install --legacy-peer-deps && npm run build && cd ../server"
   },
   "engines": {
-    "node": "18.x",
-    "npm": "9.x"
+    "node": "20.x"
   },
   "author": "",
   "license": "ISC",
