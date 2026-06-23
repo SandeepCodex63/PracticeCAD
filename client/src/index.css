@@ -1,0 +1,123 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-50: #f0f7ff;
+  --color-brand-100: #e0effe;
+  --color-brand-200: #bcdffd;
+  --color-brand-300: #93cbfd;
+  --color-brand-350: #6bb5fc;
+  --color-brand-355: #56abfc;
+  --color-brand-400: #3b9dfa;
+  --color-brand-450: #258df7;
+  --color-brand-500: #0f7af2;
+  --color-brand-600: #0263d9;
+  --color-brand-650: #0256bd;
+  --color-brand-700: #024ca6;
+  --color-brand-800: #033e85;
+  --color-brand-900: #06336b;
+}
+
+/* Custom dark mode class variant for Tailwind CSS v4 */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Theme CSS custom variables */
+:root {
+  --bg-color: #f6f8fa;
+  --text-color: #0f172a;
+  
+  --panel-bg: rgba(255, 255, 255, 0.9);
+  --panel-border: rgba(15, 23, 42, 0.1);
+  
+  --panel-bg-heavy: rgba(255, 255, 255, 0.98);
+  --panel-border-heavy: rgba(15, 23, 42, 0.14);
+  
+  --grid-line: rgba(15, 23, 42, 0.035);
+  
+  --scrollbar-track: #f1f5f9;
+  --scrollbar-thumb: #cbd5e1;
+  --scrollbar-thumb-hover: #94a3b8;
+}
+
+/* Dark mode overrides */
+:root.dark {
+  --bg-color: #0a0d14;
+  --text-color: #f8fafc;
+  
+  --panel-bg: rgba(16, 22, 37, 0.85);
+  --panel-border: rgba(255, 255, 255, 0.09);
+  
+  --panel-bg-heavy: rgba(11, 15, 26, 0.95);
+  --panel-border-heavy: rgba(255, 255, 255, 0.14);
+  
+  --grid-line: rgba(255, 255, 255, 0.025);
+  
+  --scrollbar-track: #0a0d14;
+  --scrollbar-thumb: #1e293b;
+  --scrollbar-thumb-hover: #334155;
+}
+
+/* Custom styles and overrides */
+html, body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: 'Outfit', 'Inter', system-ui, sans-serif;
+  scroll-behavior: smooth;
+  margin: 0;
+  padding: 0;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Glassmorphism custom classes */
+.glass-panel {
+  background: var(--panel-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--panel-border);
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.glass-panel-heavy {
+  background: var(--panel-bg-heavy);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--panel-border-heavy);
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.glow-purple {
+  box-shadow: 0 0 30px -5px rgba(15, 122, 242, 0.2);
+}
+
+.glow-emerald {
+  box-shadow: 0 0 30px -5px rgba(16, 185, 129, 0.2);
+}
+
+.glow-rose {
+  box-shadow: 0 0 30px -5px rgba(244, 63, 94, 0.2);
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+}
+
+/* Engineering CAD Grid Background */
+.bg-mesh {
+  background-image: 
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+  background-size: 32px 32px;
+  background-color: var(--bg-color);
+  transition: background-color 0.3s ease, background-image 0.3s ease;
+}

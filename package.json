@@ -1,0 +1,20 @@
+{
+  "name": "quiz-root",
+  "version": "1.0.0",
+  "description": "Root orchestrator for Practice CAD Platform",
+  "private": true,
+  "scripts": {
+    "seed": "npm run seed --prefix server",
+    "dev:server": "npm run dev --prefix server",
+    "dev:client": "npm run dev --prefix client",
+    "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "dependencies": {
+    "cloudinary": "^2.10.0",
+    "mongodb": "^7.3.0",
+    "nodemailer": "^9.0.1"
+  }
+}
