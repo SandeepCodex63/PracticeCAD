@@ -7,7 +7,7 @@
     "start": "node server.js",
     "dev": "nodemon server.js",
     "seed": "node utils/seed.js",
-    "build": "cd ../client && npm install && npm run build && cd ../server"
+    "build": "cd ../client && npm install --legacy-peer-deps && npm run build && cd ../server"
   },
   "engines": {
     "node": "18.x",
