@@ -390,7 +390,7 @@ const AdminDashboard = () => {
                     <tr key={q._id} className="hover:bg-slate-900/20">
                       <td className="py-3.5 px-5">
                         <div className="flex items-center space-x-3">
-                          <img src="/profile.png" alt={q.title} className="w-8 h-8 rounded object-cover bg-slate-950 border border-gray-850" />
+                          <img src={q.imageUrl} alt={q.title} className="w-8 h-8 rounded object-cover bg-slate-950 border border-gray-850 blur-[2px]" />
                           <span className="text-gray-200 font-bold block truncate max-w-[120px]" title={q.title}>
                             {q.title}
                           </span>

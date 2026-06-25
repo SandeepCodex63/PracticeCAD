@@ -202,9 +202,9 @@ const Quizzes = () => {
                 {/* Image block */}
                 <div className="relative h-44 overflow-hidden bg-slate-200 dark:bg-slate-950">
                   <img
-                    src="/profile.png"
+                    src={quiz.imageUrl}
                     alt={quiz.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-cover blur-[2px] group-hover:scale-105 transition-all duration-500"
                   />
                   {/* Category overlay */}
                   <span className="absolute top-3 left-3 bg-slate-100/90 dark:bg-slate-950/80 backdrop-blur-md px-2.5 py-1 text-[9px] font-extrabold uppercase tracking-widest text-brand-650 dark:text-brand-300 rounded-md border border-brand-500/20">

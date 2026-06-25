@@ -105,7 +105,7 @@ const QuizPlay = () => {
           setShowResultModal(true);
           setFeedbackError(null);
         } else {
-          setFeedbackError('Incorrect answer. Remember you can do it!');
+          setFeedbackError('Incorrect answer. Try again!');
           setSubmitting(false);
           startTimer();
         }
