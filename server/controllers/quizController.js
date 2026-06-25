@@ -20,7 +20,7 @@ const createQuiz = async (req, res) => {
   };
 
   try {
-    if (!title || !category || !startDate || !endDate) {
+    if (!title || !category) {
       cleanLocalFiles();
       return res.status(400).json({ success: false, message: 'Please provide all required quiz fields.' });
     }
@@ -95,8 +95,8 @@ const createQuiz = async (req, res) => {
       questions: finalQuestions,
       difficulty,
       category,
-      startDate: new Date(startDate),
-      endDate: new Date(endDate),
+      startDate: startDate ? new Date(startDate) : new Date(),
+      endDate: endDate ? new Date(endDate) : undefined,
       createdBy: req.user.id
     });
 

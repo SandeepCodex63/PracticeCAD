@@ -46,8 +46,8 @@ const Quizzes = () => {
 
   // Filter quizzes based on category and search query
   const filteredQuizzes = quizzes.filter((quiz) => {
-    const matchesSearch = quiz.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
-                          quiz.description.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesSearch = quiz.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      quiz.description.toLowerCase().includes(searchQuery.toLowerCase());
     const matchesCategory = selectedCategory === 'All' || quiz.category === selectedCategory;
     return matchesSearch && matchesCategory;
   });
@@ -55,17 +55,20 @@ const Quizzes = () => {
   // Calculate student statistics
   const attemptedQuizzes = quizzes.filter(q => q.attempted);
   const correctCount = attemptedQuizzes.filter(q => q.attemptDetails?.correct).length;
-  const accuracyRate = attemptedQuizzes.length > 0 
-    ? Math.round((correctCount / attemptedQuizzes.length) * 100) 
+  const accuracyRate = attemptedQuizzes.length > 0
+    ? Math.round((correctCount / attemptedQuizzes.length) * 100)
     : 0;
 
   const getQuizTimeStatus = (quiz) => {
     const now = new Date();
-    const start = new Date(quiz.startDate);
-    const end = new Date(quiz.endDate);
-
-    if (now < start) return 'upcoming';
-    if (now > end) return 'ended';
+    if (quiz.startDate) {
+      const start = new Date(quiz.startDate);
+      if (now < start) return 'upcoming';
+    }
+    if (quiz.endDate) {
+      const end = new Date(quiz.endDate);
+      if (now > end) return 'ended';
+    }
     return 'active';
   };
 
@@ -151,11 +154,10 @@ const Quizzes = () => {
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all border whitespace-nowrap cursor-pointer ${
-                  selectedCategory === cat
+                className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all border whitespace-nowrap cursor-pointer ${selectedCategory === cat
                     ? 'bg-brand-500/15 text-brand-650 dark:text-brand-400 border-brand-500/30 shadow-md'
                     : 'bg-transparent text-slate-500 dark:text-gray-400 border-slate-200 dark:border-gray-900 hover:text-slate-800 dark:hover:text-white hover:bg-slate-200/40 dark:hover:bg-slate-900/35'
-                }`}
+                  }`}
               >
                 {cat}
               </button>
@@ -200,7 +202,7 @@ const Quizzes = () => {
                 {/* Image block */}
                 <div className="relative h-44 overflow-hidden bg-slate-200 dark:bg-slate-950">
                   <img
-                    src={quiz.imageUrl}
+                    src="/profile.png"
                     alt={quiz.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
@@ -228,11 +230,20 @@ const Quizzes = () => {
 
                   <div>
                     {/* Time Schedule details */}
-                    <div className="flex items-center space-x-2 text-[10px] text-slate-500 dark:text-gray-500 mb-4 bg-slate-100 dark:bg-slate-950/50 p-2 rounded-lg border border-slate-200 dark:border-gray-900/40">
+                    <div className="flex items-center space-x-2 text-[10px] text-slate-500 dark:text-gray-500 mb-4 bg-slate-100 dark:bg-slate-955/50 p-2 rounded-lg border border-slate-200 dark:border-gray-900/40">
                       <Calendar className="w-3.5 h-3.5 flex-shrink-0" />
                       <div className="flex flex-col">
-                        <span>Starts: {formatQuizDate(quiz.startDate)}</span>
-                        <span>Ends:   {formatQuizDate(quiz.endDate)}</span>
+                        {quiz.endDate ? (
+                          <>
+                            <span>Starts: {formatQuizDate(quiz.startDate)}</span>
+                            
+                          </>
+                        ) : (
+                          <>
+                            <span>Published: {formatQuizDate(quiz.startDate)}</span>
+                            <span className="text-emerald-555 dark:text-emerald-400 font-bold">Open For Attempt</span>
+                          </>
+                        )}
                       </div>
                     </div>
 

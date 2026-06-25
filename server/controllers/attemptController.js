@@ -23,10 +23,10 @@ const submitAttempt = async (req, res) => {
 
     // Check if quiz is currently active based on date range
     const now = new Date();
-    if (now < quiz.startDate) {
+    if (quiz.startDate && now < quiz.startDate) {
       return res.status(400).json({ success: false, message: 'This quiz has not started yet.' });
     }
-    if (now > quiz.endDate) {
+    if (quiz.endDate && now > quiz.endDate) {
       return res.status(400).json({ success: false, message: 'This quiz has ended and is closed for submissions.' });
     }
 

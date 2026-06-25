@@ -33,9 +33,10 @@ const QuizPlay = () => {
   const [showResultModal, setShowResultModal] = useState(false);
   const [resultData, setResultData] = useState(null);
   const [isReviewMode, setIsReviewMode] = useState(false);
+  const [feedbackError, setFeedbackError] = useState(null);
 
   // Auto-starting timer
-  const { elapsedTime, stop: stopTimer } = useTimer(true);
+  const { elapsedTime, stop: stopTimer, start: startTimer, setElapsedTime } = useTimer(true);
 
   useEffect(() => {
     const fetchQuizDetails = async () => {
@@ -60,6 +61,15 @@ const QuizPlay = () => {
             }
           } else {
             setAnswersList(Array(questionsCount).fill(''));
+            // Timer Persistence via LocalStorage
+            const storageKey = `quiz_start_time_${data.quiz._id}`;
+            let startTime = localStorage.getItem(storageKey);
+            if (!startTime) {
+              startTime = Date.now().toString();
+              localStorage.setItem(storageKey, startTime);
+            }
+            const initialElapsed = Math.max(0, Math.floor((Date.now() - Number(startTime)) / 1000));
+            setElapsedTime(initialElapsed);
           }
         }
       } catch (err) {
@@ -70,7 +80,7 @@ const QuizPlay = () => {
     };
 
     fetchQuizDetails();
-  }, [id, navigate, stopTimer]);
+  }, [id, navigate, stopTimer, setElapsedTime]);
 
   const handleSubmit = async () => {
     // Check that all answers are provided
@@ -89,12 +99,21 @@ const QuizPlay = () => {
     try {
       const data = await submitAttempt(quiz._id, numericAnswers, elapsedTime);
       if (data?.success) {
-        setResultData(data);
-        setShowResultModal(true);
+        if (data.attempt?.correct) {
+          localStorage.removeItem(`quiz_start_time_${quiz._id}`);
+          setResultData(data);
+          setShowResultModal(true);
+          setFeedbackError(null);
+        } else {
+          setFeedbackError('Incorrect answer. Remember you can do it!');
+          setSubmitting(false);
+          startTimer();
+        }
       }
     } catch (err) {
       setError(err.response?.data?.message || 'Failed to submit quiz attempt.');
       setSubmitting(false);
+      startTimer();
     }
   };
 
@@ -164,6 +183,7 @@ const QuizPlay = () => {
     const newAnswersList = [...answersList];
     newAnswersList[currentQuestionIndex] = val;
     setAnswersList(newAnswersList);
+    if (feedbackError) setFeedbackError(null);
   };
 
   const formatTimer = (secs) => {
@@ -274,6 +294,17 @@ const QuizPlay = () => {
                   disabled={submitting || isReviewMode}
                 />
               </div>
+
+              {feedbackError && (
+                <motion.div
+                  initial={{ opacity: 0, y: -5 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="p-3.5 bg-rose-500/10 border border-rose-500/25 rounded-xl text-rose-600 dark:text-rose-400 text-xs font-bold flex items-center justify-center space-x-2 shadow-sm"
+                >
+                  <AlertTriangle className="w-4 h-4 text-rose-500 flex-shrink-0" />
+                  <span>{feedbackError}</span>
+                </motion.div>
+              )}
 
               {isReviewMode && (
                 <div className="bg-emerald-500/5 dark:bg-emerald-950/20 border border-emerald-500/20 rounded-xl p-3 mt-2">
@@ -433,9 +464,11 @@ const QuizPlay = () => {
                 {!resultData.attempt?.correct && (
                   <button
                     onClick={() => {
-                      window.location.reload();
+                      setShowResultModal(false);
+                      setSubmitting(false);
+                      startTimer();
                     }}
-                    className="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold rounded-xl border border-emerald-500/20 transition-colors cursor-pointer shadow-lg shadow-emerald-500/15"
+                    className="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-555 text-white text-xs font-bold rounded-xl border border-emerald-500/20 transition-colors cursor-pointer shadow-lg shadow-emerald-500/15"
                   >
                     Try Again
                   </button>

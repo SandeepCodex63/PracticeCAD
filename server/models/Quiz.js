@@ -57,11 +57,11 @@ const quizSchema = new mongoose.Schema({
   },
   startDate: {
     type: Date,
-    required: true
+    default: Date.now
   },
   endDate: {
     type: Date,
-    required: true
+    required: false
   },
   createdBy: {
     type: mongoose.Schema.Types.ObjectId,

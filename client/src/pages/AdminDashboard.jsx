@@ -36,8 +36,6 @@ const AdminDashboard = () => {
   const [description, setDescription] = useState('');
   const [category, setCategory] = useState('');
   const [difficulty, setDifficulty] = useState('medium');
-  const [startDate, setStartDate] = useState('');
-  const [endDate, setEndDate] = useState('');
   const [questionsList, setQuestionsList] = useState([
     { id: Date.now(), minAnswer: '', maxAnswer: '', objective: '', imageFile: null, imagePreview: '', imageUrl: '', imageSourceType: 'file' }
   ]);
@@ -73,8 +71,6 @@ const AdminDashboard = () => {
     setDescription('');
     setCategory('');
     setDifficulty('medium');
-    setStartDate('');
-    setEndDate('');
     setQuestionsList([
       { id: Date.now(), minAnswer: '', maxAnswer: '', objective: '', imageFile: null, imagePreview: '', imageUrl: '', imageSourceType: 'file' }
     ]);
@@ -87,16 +83,6 @@ const AdminDashboard = () => {
     setDescription(quiz.description);
     setCategory(quiz.category);
     setDifficulty(quiz.difficulty);
-    
-    // Format dates to fit HTML input format: YYYY-MM-DDTHH:MM
-    const formatInputDate = (dString) => {
-      const d = new Date(dString);
-      d.setMinutes(d.getMinutes() - d.getTimezoneOffset());
-      return d.toISOString().slice(0, 16);
-    };
-
-    setStartDate(formatInputDate(quiz.startDate));
-    setEndDate(formatInputDate(quiz.endDate));
 
     const populatedQuestions = quiz.questions && quiz.questions.length > 0
       ? quiz.questions.map(q => ({
@@ -171,7 +157,7 @@ const AdminDashboard = () => {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    if (!title || !category || !startDate || !endDate) {
+    if (!title || !category) {
       return alert('Please fill in all text fields.');
     }
 
@@ -198,8 +184,6 @@ const AdminDashboard = () => {
     formData.append('description', '');
     formData.append('category', category);
     formData.append('difficulty', difficulty);
-    formData.append('startDate', new Date(startDate).toISOString());
-    formData.append('endDate', new Date(endDate).toISOString());
 
     // Serialize questions data
     const questionsMeta = questionsList.map(q => ({
@@ -406,7 +390,7 @@ const AdminDashboard = () => {
                     <tr key={q._id} className="hover:bg-slate-900/20">
                       <td className="py-3.5 px-5">
                         <div className="flex items-center space-x-3">
-                          <img src={q.imageUrl} alt={q.title} className="w-8 h-8 rounded object-cover bg-slate-950 border border-gray-850" />
+                          <img src="/profile.png" alt={q.title} className="w-8 h-8 rounded object-cover bg-slate-950 border border-gray-850" />
                           <span className="text-gray-200 font-bold block truncate max-w-[120px]" title={q.title}>
                             {q.title}
                           </span>
@@ -617,35 +601,7 @@ const AdminDashboard = () => {
                       </div>
                     </div>
 
-                    <div className="grid grid-cols-2 gap-4">
-                      {/* Start Date */}
-                      <div>
-                        <label className="block text-[10px] font-extrabold uppercase tracking-wider text-slate-500 dark:text-gray-400 mb-1.5">
-                          Start Date & Time
-                        </label>
-                        <input
-                          type="datetime-local"
-                          value={startDate}
-                          onChange={(e) => setStartDate(e.target.value)}
-                          className="block w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-955 dark:bg-slate-950 border border-slate-250 dark:border-gray-800 rounded-xl focus:border-brand-500 focus:outline-none text-sm text-slate-800 dark:text-white transition-colors [color-scheme:light] dark:[color-scheme:dark]"
-                          required
-                        />
-                      </div>
 
-                      {/* End Date */}
-                      <div>
-                        <label className="block text-[10px] font-extrabold uppercase tracking-wider text-slate-500 dark:text-gray-400 mb-1.5">
-                          End Date & Time
-                        </label>
-                        <input
-                          type="datetime-local"
-                          value={endDate}
-                          onChange={(e) => setEndDate(e.target.value)}
-                          className="block w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-955 dark:bg-slate-950 border border-slate-250 dark:border-gray-800 rounded-xl focus:border-brand-500 focus:outline-none text-sm text-slate-800 dark:text-white transition-colors [color-scheme:light] dark:[color-scheme:dark]"
-                          required
-                        />
-                      </div>
-                    </div>
 
                     {/* Tolerance Explanation Tooltip Helper */}
                     <div className="bg-slate-50 dark:bg-slate-955 dark:bg-slate-950/60 p-4 rounded-xl border border-slate-200 dark:border-gray-850/30 text-[10px] text-slate-500 dark:text-gray-400 flex items-start space-x-2">
