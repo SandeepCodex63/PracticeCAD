@@ -59,19 +59,19 @@ const BadgesShelf = ({ earnedBadges = [] }) => {
               whileHover={{ y: -4, scale: 1.02 }}
               className={`relative overflow-hidden flex flex-col items-center justify-center p-5 rounded-2xl transition-all duration-300 border text-center ${
                 isEarned
-                  ? `bg-slate-900/60 backdrop-blur-md ${badge.borderColor} shadow-lg ${badge.glowColor}`
-                  : 'bg-slate-950/40 border-gray-900 opacity-40 grayscale'
+                  ? `bg-white/80 dark:bg-slate-900/60 backdrop-blur-md border-slate-200 dark:${badge.borderColor} shadow-md dark:shadow-lg dark:${badge.glowColor}`
+                  : 'bg-slate-50/50 dark:bg-slate-950/40 border-slate-150 dark:border-gray-900/50 opacity-60 dark:opacity-40 grayscale'
               }`}
             >
               {/* Badge Icon Backdrop Glow */}
               {isEarned && (
-                <div className={`absolute -inset-10 bg-gradient-to-tr ${badge.color} opacity-5 blur-2xl rounded-full`} />
+                <div className={`absolute -inset-10 bg-gradient-to-tr ${badge.color} opacity-[0.03] dark:opacity-5 blur-2xl rounded-full`} />
               )}
 
               {/* Lock Indicator */}
               {!isEarned && (
-                <div className="absolute top-2 right-2 p-1 bg-slate-900 rounded-full border border-gray-800">
-                  <Lock className="w-3 h-3 text-gray-500" />
+                <div className="absolute top-2 right-2 p-1.5 bg-slate-100 dark:bg-slate-900 rounded-full border border-slate-200 dark:border-gray-800">
+                  <Lock className="w-3 h-3 text-slate-400 dark:text-gray-500" />
                 </div>
               )}
 
@@ -80,25 +80,25 @@ const BadgesShelf = ({ earnedBadges = [] }) => {
                 className={`w-12 h-12 rounded-xl flex items-center justify-center mb-3 ${
                   isEarned
                     ? `bg-gradient-to-tr ${badge.color} text-white shadow-md`
-                    : 'bg-slate-800 text-gray-600'
+                    : 'bg-slate-200 dark:bg-slate-800 text-slate-400 dark:text-gray-600'
                 }`}
               >
                 <Icon className="w-6 h-6" />
               </div>
 
               {/* Title */}
-              <h4 className={`text-sm font-bold tracking-wide ${isEarned ? 'text-gray-100' : 'text-gray-500'}`}>
+              <h4 className={`text-sm font-bold tracking-wide ${isEarned ? 'text-slate-800 dark:text-gray-100' : 'text-slate-400 dark:text-gray-500'}`}>
                 {badge.name}
               </h4>
 
               {/* Description */}
-              <p className="text-[11px] text-gray-400 mt-1.5 leading-relaxed px-1">
+              <p className={`text-[11px] mt-1.5 leading-relaxed px-1 ${isEarned ? 'text-slate-650 dark:text-gray-400' : 'text-slate-400 dark:text-gray-500'}`}>
                 {badge.description}
               </p>
 
               {/* Status Ribbon */}
               {isEarned && (
-                <span className={`text-[9px] font-extrabold uppercase tracking-widest mt-3.5 px-2 py-0.5 rounded bg-brand-500/10 ${badge.textColor} border border-brand-500/20`}>
+                <span className={`text-[9px] font-extrabold uppercase tracking-widest mt-3.5 px-2.5 py-0.5 rounded bg-brand-500/10 ${badge.textColor} border border-brand-500/20`}>
                   Earned
                 </span>
               )}

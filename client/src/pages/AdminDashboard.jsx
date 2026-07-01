@@ -270,11 +270,11 @@ const AdminDashboard = () => {
       {/* Page header controls */}
       <div className="mb-10 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h1 className="text-3xl font-extrabold tracking-tight text-white flex items-center space-x-2">
+          <h1 className="text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white flex items-center space-x-2">
             <ShieldAlert className="w-8 h-8 text-rose-500" />
             <span>Admin Center</span>
           </h1>
-          <p className="text-gray-400 text-sm mt-1">
+          <p className="text-slate-550 dark:text-gray-400 text-sm mt-1">
             Manage quizzes, analyze database metrics, and review student grades.
           </p>
         </div>
@@ -284,9 +284,9 @@ const AdminDashboard = () => {
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             onClick={handleExportCSV}
-            className="px-4 py-2.5 bg-slate-900 hover:bg-slate-800 text-xs font-bold rounded-xl border border-gray-800 text-gray-300 flex items-center space-x-1.5 cursor-pointer"
+            className="px-4 py-2.5 bg-slate-900 hover:bg-slate-800 text-xs font-bold rounded-xl border border-gray-800 text-slate-200 flex items-center space-x-1.5 cursor-pointer"
           >
-            <Download className="w-4 h-4 text-gray-400" />
+            <Download className="w-4 h-4 text-slate-300" />
             <span>Export CSV</span>
           </motion.button>
 
@@ -306,52 +306,52 @@ const AdminDashboard = () => {
       {analytics && (
         <div className="grid grid-cols-2 lg:grid-cols-6 gap-4 sm:gap-6 mb-10">
           
-          <div className="glass-panel p-4 rounded-xl border border-gray-800/80">
-            <div className="flex items-center space-x-2 text-gray-400 mb-1">
-              <Users className="w-4 h-4 text-brand-400" />
+          <div className="glass-panel p-4 rounded-xl border border-slate-200 dark:border-gray-800/80">
+            <div className="flex items-center space-x-2 text-slate-500 dark:text-gray-400 mb-1">
+              <Users className="w-4 h-4 text-brand-500 dark:text-brand-400" />
               <span className="text-[10px] uppercase font-bold tracking-wider">Users</span>
             </div>
-            <span className="text-xl font-black text-white">{analytics.totalUsers}</span>
+            <span className="text-xl font-black text-slate-900 dark:text-white">{analytics.totalUsers}</span>
           </div>
 
-          <div className="glass-panel p-4 rounded-xl border border-gray-800/80">
-            <div className="flex items-center space-x-2 text-gray-400 mb-1">
-              <BookOpen className="w-4 h-4 text-cyan-400" />
+          <div className="glass-panel p-4 rounded-xl border border-slate-200 dark:border-gray-800/80">
+            <div className="flex items-center space-x-2 text-slate-500 dark:text-gray-400 mb-1">
+              <BookOpen className="w-4 h-4 text-cyan-555 dark:text-cyan-400" />
               <span className="text-[10px] uppercase font-bold tracking-wider">Quizzes</span>
             </div>
-            <span className="text-xl font-black text-white">{analytics.totalQuizzes}</span>
+            <span className="text-xl font-black text-slate-900 dark:text-white">{analytics.totalQuizzes}</span>
           </div>
 
-          <div className="glass-panel p-4 rounded-xl border border-gray-800/80">
-            <div className="flex items-center space-x-2 text-gray-400 mb-1">
-              <Plus className="w-4 h-4 text-indigo-400" />
+          <div className="glass-panel p-4 rounded-xl border border-slate-200 dark:border-gray-800/80">
+            <div className="flex items-center space-x-2 text-slate-500 dark:text-gray-400 mb-1">
+              <Plus className="w-4 h-4 text-indigo-555 dark:text-indigo-400" />
               <span className="text-[10px] uppercase font-bold tracking-wider">Attempts</span>
             </div>
-            <span className="text-xl font-black text-white">{analytics.totalAttempts}</span>
+            <span className="text-xl font-black text-slate-900 dark:text-white">{analytics.totalAttempts}</span>
           </div>
 
-          <div className="glass-panel p-4 rounded-xl border border-gray-800/80">
-            <div className="flex items-center space-x-2 text-gray-400 mb-1">
-              <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+          <div className="glass-panel p-4 rounded-xl border border-slate-200 dark:border-gray-800/80">
+            <div className="flex items-center space-x-2 text-slate-500 dark:text-gray-400 mb-1">
+              <CheckCircle2 className="w-4 h-4 text-emerald-555 dark:text-emerald-400" />
               <span className="text-[10px] uppercase font-bold tracking-wider">Accuracy</span>
             </div>
-            <span className="text-xl font-black text-emerald-400">{analytics.correctPercentage}%</span>
+            <span className="text-xl font-black text-emerald-600 dark:text-emerald-400">{analytics.correctPercentage}%</span>
           </div>
 
-          <div className="glass-panel p-4 rounded-xl border border-gray-800/80">
-            <div className="flex items-center space-x-2 text-gray-400 mb-1">
-              <Clock className="w-4 h-4 text-purple-400" />
+          <div className="glass-panel p-4 rounded-xl border border-slate-200 dark:border-gray-800/80">
+            <div className="flex items-center space-x-2 text-slate-500 dark:text-gray-400 mb-1">
+              <Clock className="w-4 h-4 text-purple-555 dark:text-purple-400" />
               <span className="text-[10px] uppercase font-bold tracking-wider">Avg Time</span>
             </div>
-            <span className="text-xl font-black text-white">{analytics.averageTime}s</span>
+            <span className="text-xl font-black text-slate-900 dark:text-white">{analytics.averageTime}s</span>
           </div>
 
-          <div className="glass-panel p-4 rounded-xl border border-gray-800/80 col-span-2 lg:col-span-1">
-            <div className="flex items-center space-x-2 text-gray-400 mb-1">
-              <AlertTriangle className="w-4 h-4 text-rose-400" />
+          <div className="glass-panel p-4 rounded-xl border border-slate-200 dark:border-gray-800/80 col-span-2 lg:col-span-1">
+            <div className="flex items-center space-x-2 text-slate-500 dark:text-gray-400 mb-1">
+              <AlertTriangle className="w-4 h-4 text-rose-555 dark:text-rose-400" />
               <span className="text-[10px] uppercase font-bold tracking-wider">Difficult</span>
             </div>
-            <span className="text-xs font-bold text-gray-250 truncate block" title={analytics.mostDifficultQuiz}>
+            <span className="text-xs font-bold text-slate-700 dark:text-gray-250 truncate block" title={analytics.mostDifficultQuiz}>
               {analytics.mostDifficultQuiz}
             </span>
           </div>
@@ -364,12 +364,12 @@ const AdminDashboard = () => {
         
         {/* Quizzes list table */}
         <div className="xl:col-span-7">
-          <div className="glass-panel rounded-2xl border border-gray-800/80 overflow-hidden">
-            <div className="px-5 py-4 border-b border-gray-950 flex justify-between items-center bg-slate-950/20">
-              <h3 className="text-sm font-bold text-white uppercase tracking-wider">
+          <div className="glass-panel rounded-2xl border border-slate-200 dark:border-gray-800/80 overflow-hidden">
+            <div className="px-5 py-4 border-b border-slate-150 dark:border-gray-950 flex justify-between items-center bg-slate-100/30 dark:bg-slate-950/20">
+              <h3 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider">
                 Active & Upcoming Quizzes
               </h3>
-              <span className="text-[10px] font-bold text-gray-500 uppercase">
+              <span className="text-[10px] font-bold text-slate-400 dark:text-gray-500 uppercase">
                 {quizzes.length} Hosted
               </span>
             </div>
@@ -377,7 +377,7 @@ const AdminDashboard = () => {
             <div className="overflow-x-auto">
               <table className="w-full text-left border-collapse">
                 <thead>
-                  <tr className="bg-slate-950/40 text-gray-500 text-[9px] font-bold uppercase tracking-wider border-b border-gray-900">
+                  <tr className="bg-slate-100/50 dark:bg-slate-950/40 text-slate-500 dark:text-gray-400 text-[9px] font-bold uppercase tracking-wider border-b border-slate-200 dark:border-gray-900">
                     <th className="py-3 px-5">Quiz Title</th>
                     <th className="py-3 px-5 text-center">Category</th>
                     <th className="py-3 px-5 text-center">Range</th>
@@ -385,28 +385,28 @@ const AdminDashboard = () => {
                     <th className="py-3 px-5 text-center">Actions</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-gray-900/40 text-[11px] font-medium text-gray-300">
+                <tbody className="divide-y divide-slate-100 dark:divide-gray-900/40 text-[11px] font-medium text-slate-700 dark:text-gray-300">
                   {quizzes.map(q => (
-                    <tr key={q._id} className="hover:bg-slate-900/20">
+                    <tr key={q._id} className="hover:bg-slate-50 dark:hover:bg-slate-900/20">
                       <td className="py-3.5 px-5">
                         <div className="flex items-center space-x-3">
-                          <img src={q.imageUrl} alt={q.title} className="w-8 h-8 rounded object-cover bg-slate-950 border border-gray-850 blur-[2px]" />
-                          <span className="text-gray-200 font-bold block truncate max-w-[120px]" title={q.title}>
+                          <img src={q.imageUrl} alt={q.title} className="w-8 h-8 rounded object-cover bg-slate-100 dark:bg-slate-955 border border-slate-200 dark:border-gray-850" />
+                          <span className="text-slate-900 dark:text-gray-200 font-bold block truncate max-w-[120px]" title={q.title}>
                             {q.title}
                           </span>
                         </div>
                       </td>
-                      <td className="py-3.5 px-5 text-center text-brand-350 font-semibold uppercase">{q.category}</td>
-                      <td className="py-3.5 px-5 text-center font-mono text-gray-400">
+                      <td className="py-3.5 px-5 text-center text-brand-600 dark:text-brand-350 font-semibold uppercase">{q.category}</td>
+                      <td className="py-3.5 px-5 text-center font-mono text-slate-500 dark:text-gray-400">
                         {q.questions && q.questions.length > 0 
                           ? `${q.questions.length} Question${q.questions.length > 1 ? 's' : ''}` 
                           : `${q.minAnswer} - ${q.maxAnswer}`}
                       </td>
                       <td className="py-3.5 px-5 text-center">
                         <span className={`px-2 py-0.5 rounded text-[8px] font-bold uppercase border border-opacity-20 ${
-                          q.difficulty === 'easy' ? 'bg-emerald-500/10 text-emerald-450 border-emerald-500' :
-                          q.difficulty === 'medium' ? 'bg-amber-500/10 text-amber-450 border-amber-500' :
-                          'bg-rose-500/10 text-rose-455 border-rose-500'
+                          q.difficulty === 'easy' ? 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-450 border-emerald-500' :
+                          q.difficulty === 'medium' ? 'bg-amber-500/10 text-amber-600 dark:text-amber-450 border-amber-500' :
+                          'bg-rose-500/10 text-rose-600 dark:text-rose-455 border-rose-500'
                         }`}>
                           {q.difficulty}
                         </span>
@@ -415,14 +415,14 @@ const AdminDashboard = () => {
                         <div className="flex items-center justify-center space-x-2">
                           <button 
                             onClick={() => openEditModal(q)}
-                            className="p-1.5 text-gray-400 hover:text-brand-400 hover:bg-slate-900 rounded-lg transition-colors cursor-pointer"
+                            className="p-1.5 text-slate-400 hover:text-brand-500 dark:text-gray-500 dark:hover:text-brand-400 hover:bg-slate-100 dark:hover:bg-slate-900 rounded-lg transition-colors cursor-pointer"
                             title="Edit"
                           >
                             <Edit2 className="w-3.5 h-3.5" />
                           </button>
                           <button 
                             onClick={() => handleDeleteQuiz(q._id)}
-                            className="p-1.5 text-gray-400 hover:text-rose-450 hover:bg-slate-900 rounded-lg transition-colors cursor-pointer"
+                            className="p-1.5 text-slate-400 hover:text-rose-650 dark:text-gray-500 dark:hover:text-rose-450 hover:bg-slate-100 dark:hover:bg-slate-900 rounded-lg transition-colors cursor-pointer"
                             title="Delete"
                           >
                             <Trash2 className="w-3.5 h-3.5" />
@@ -434,7 +434,7 @@ const AdminDashboard = () => {
 
                   {quizzes.length === 0 && (
                     <tr>
-                      <td colSpan={5} className="py-12 text-center text-gray-600 italic">
+                      <td colSpan={5} className="py-12 text-center text-slate-400 dark:text-gray-600 italic">
                         No quizzes currently hosted. Click "Create Quiz" to make one.
                       </td>
                     </tr>
@@ -447,12 +447,12 @@ const AdminDashboard = () => {
 
         {/* Participant list summary table */}
         <div className="xl:col-span-5">
-          <div className="glass-panel rounded-2xl border border-gray-800/80 overflow-hidden">
-            <div className="px-5 py-4 border-b border-b-gray-950 bg-slate-950/20 flex justify-between items-center">
-              <h3 className="text-sm font-bold text-white uppercase tracking-wider">
+          <div className="glass-panel rounded-2xl border border-slate-200 dark:border-gray-800/80 overflow-hidden">
+            <div className="px-5 py-4 border-b border-slate-150 dark:border-gray-950 bg-slate-100/30 dark:bg-slate-950/20 flex justify-between items-center">
+              <h3 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider">
                 Participants Roster
               </h3>
-              <span className="text-[10px] font-bold text-gray-500 uppercase">
+              <span className="text-[10px] font-bold text-slate-400 dark:text-gray-500 uppercase">
                 {participants.length} Active
               </span>
             </div>
@@ -460,24 +460,24 @@ const AdminDashboard = () => {
             <div className="overflow-x-auto">
               <table className="w-full text-left border-collapse">
                 <thead>
-                  <tr className="bg-slate-950/40 text-gray-500 text-[9px] font-bold uppercase tracking-wider border-b border-gray-900">
+                  <tr className="bg-slate-100/50 dark:bg-slate-955 dark:bg-slate-950/40 text-slate-500 dark:text-gray-400 text-[9px] font-bold uppercase tracking-wider border-b border-slate-200 dark:border-gray-900">
                     <th className="py-3 px-5">Participant</th>
                     <th className="py-3 px-5 text-center">Attempts</th>
                     <th className="py-3 px-5 text-center">Score</th>
                     <th className="py-3 px-5 text-center">Badges</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-gray-900/40 text-[11px] font-medium text-gray-300">
+                <tbody className="divide-y divide-slate-100 dark:divide-gray-900/40 text-[11px] font-medium text-slate-700 dark:text-gray-300">
                   {participants.map(p => (
-                    <tr key={p.id} className="hover:bg-slate-900/20">
+                    <tr key={p.id} className="hover:bg-slate-50 dark:hover:bg-slate-900/20">
                       <td className="py-3 px-5">
                         <div className="flex flex-col">
-                          <span className="text-gray-250 font-bold">{p.name}</span>
-                          <span className="text-[9px] text-gray-500">{p.email}</span>
+                          <span className="text-slate-900 dark:text-gray-200 font-bold">{p.name}</span>
+                          <span className="text-[9px] text-slate-500 dark:text-gray-550">{p.email}</span>
                         </div>
                       </td>
-                      <td className="py-3 px-5 text-center font-mono text-gray-400">{p.totalAttempts}</td>
-                      <td className="py-3 px-5 text-center font-bold text-emerald-400 font-mono">
+                      <td className="py-3 px-5 text-center font-mono text-slate-500 dark:text-gray-400">{p.totalAttempts}</td>
+                      <td className="py-3 px-5 text-center font-bold text-emerald-600 dark:text-emerald-400 font-mono">
                         {p.correctAttempts}
                       </td>
                       <td className="py-3 px-5">

@@ -113,7 +113,7 @@ const ResetPassword = () => {
       <form onSubmit={handleSubmit} className="space-y-5">
         {/* OTP Input */}
         <div>
-          <label className="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">
+          <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-gray-400 mb-2">
             6-Digit OTP Code
           </label>
           <input
@@ -121,7 +121,7 @@ const ResetPassword = () => {
             maxLength={6}
             value={otp}
             onChange={(e) => setOtp(e.target.value.replace(/\D/g, ''))}
-            className="block w-full py-2.5 bg-slate-900/40 border border-gray-800 rounded-xl focus:border-brand-500 focus:outline-none text-center font-mono tracking-widest text-lg text-brand-400 placeholder-gray-700 transition-colors"
+            className="block w-full py-3 bg-slate-50 dark:bg-slate-900/20 border border-slate-200 dark:border-gray-800/80 rounded-xl focus:border-brand-500 focus:ring-2 focus:ring-brand-500/15 focus:outline-none text-center font-mono tracking-widest text-lg text-brand-600 dark:text-brand-400 placeholder-slate-350 dark:placeholder-gray-700 transition-colors"
             placeholder="000000"
             required
             disabled={submitting}
@@ -130,18 +130,18 @@ const ResetPassword = () => {
 
         {/* New Password Input */}
         <div>
-          <label className="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">
+          <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-gray-400 mb-2">
             New Password
           </label>
-          <div className="relative">
-            <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-500">
+          <div className="relative flex items-center bg-slate-50 dark:bg-slate-900/20 border border-slate-200 dark:border-gray-800/80 rounded-xl transition-all duration-200 focus-within:border-brand-500 focus-within:ring-2 focus-within:ring-brand-500/15 focus-within:bg-white dark:focus-within:bg-slate-900/60 group">
+            <div className="pl-3.5 flex items-center pointer-events-none text-slate-400 dark:text-gray-500 group-focus-within:text-brand-500 transition-colors">
               <Lock className="w-4 h-4" />
             </div>
             <input
               type={showNewPassword ? 'text' : 'password'}
               value={newPassword}
               onChange={(e) => setNewPassword(e.target.value)}
-              className="block w-full pl-10 pr-10 py-3 bg-slate-900/40 border border-gray-800 rounded-xl focus:border-brand-500 focus:ring-1 focus:ring-brand-500 focus:outline-none text-sm text-gray-200 placeholder-gray-650 transition-colors"
+              className="block w-full pl-3 pr-10 py-3 bg-transparent border-0 focus:outline-none text-sm text-slate-855 dark:text-gray-250 placeholder-slate-400 dark:placeholder-gray-650 focus:ring-0"
               placeholder="Min. 6 characters"
               required
               disabled={submitting}
@@ -149,27 +149,27 @@ const ResetPassword = () => {
             <button
               type="button"
               onClick={() => setShowNewPassword(!showNewPassword)}
-              className="absolute inset-y-0 right-0 pr-3.5 flex items-center text-gray-500 hover:text-gray-300 transition-colors cursor-pointer"
+              className="absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-450 dark:text-gray-500 hover:text-slate-650 dark:hover:text-gray-300 transition-colors cursor-pointer"
             >
-              {showNewPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+              {showNewPassword ? <EyeOff className="w-4.5 h-4.5" /> : <Eye className="w-4.5 h-4.5" />}
             </button>
           </div>
         </div>
 
         {/* Confirm Password Input */}
         <div>
-          <label className="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">
+          <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-gray-400 mb-2">
             Confirm New Password
           </label>
-          <div className="relative">
-            <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-500">
+          <div className="relative flex items-center bg-slate-50 dark:bg-slate-900/20 border border-slate-200 dark:border-gray-800/80 rounded-xl transition-all duration-200 focus-within:border-brand-500 focus-within:ring-2 focus-within:ring-brand-500/15 focus-within:bg-white dark:focus-within:bg-slate-900/60 group">
+            <div className="pl-3.5 flex items-center pointer-events-none text-slate-400 dark:text-gray-500 group-focus-within:text-brand-500 transition-colors">
               <Lock className="w-4 h-4" />
             </div>
             <input
               type={showConfirmPassword ? 'text' : 'password'}
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
-              className="block w-full pl-10 pr-10 py-3 bg-slate-900/40 border border-gray-800 rounded-xl focus:border-brand-500 focus:ring-1 focus:ring-brand-500 focus:outline-none text-sm text-gray-200 placeholder-gray-650 transition-colors"
+              className="block w-full pl-3 pr-10 py-3 bg-transparent border-0 focus:outline-none text-sm text-slate-855 dark:text-gray-250 placeholder-slate-400 dark:placeholder-gray-650 focus:ring-0"
               placeholder="••••••••"
               required
               disabled={submitting}
@@ -177,20 +177,20 @@ const ResetPassword = () => {
             <button
               type="button"
               onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-              className="absolute inset-y-0 right-0 pr-3.5 flex items-center text-gray-500 hover:text-gray-300 transition-colors cursor-pointer"
+              className="absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-450 dark:text-gray-500 hover:text-slate-650 dark:hover:text-gray-300 transition-colors cursor-pointer"
             >
-              {showConfirmPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+              {showConfirmPassword ? <EyeOff className="w-4.5 h-4.5" /> : <Eye className="w-4.5 h-4.5" />}
             </button>
           </div>
         </div>
 
         {/* Submit */}
         <motion.button
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
+          whileHover={{ scale: 1.01, boxShadow: '0 4px 15px -1px rgba(15, 122, 242, 0.3)' }}
+          whileTap={{ scale: 0.99 }}
           type="submit"
           disabled={submitting}
-          className="w-full py-3.5 bg-gradient-to-r from-brand-600 to-indigo-600 hover:from-brand-500 hover:to-indigo-500 text-white rounded-xl text-sm font-bold flex items-center justify-center space-x-2 shadow-lg shadow-brand-500/20 border border-brand-400/20 transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full py-3 bg-brand-500 hover:bg-brand-600 dark:bg-brand-600 dark:hover:bg-brand-500 text-white rounded-xl text-sm font-bold flex items-center justify-center space-x-2 shadow-md shadow-brand-500/10 transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed border border-brand-400/20"
         >
           {submitting ? (
             <>

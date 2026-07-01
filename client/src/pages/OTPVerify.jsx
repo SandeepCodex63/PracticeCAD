@@ -114,7 +114,7 @@ const OTPVerify = () => {
             maxLength={6}
             value={otp}
             onChange={(e) => setOtp(e.target.value.replace(/\D/g, ''))}
-            className="block w-full py-4 bg-slate-100 dark:bg-slate-900/40 border border-slate-250 dark:border-gray-800 rounded-xl focus:border-brand-500 focus:outline-none text-2xl font-mono tracking-[0.5em] text-center text-brand-650 dark:text-brand-400 placeholder-slate-350 dark:placeholder-gray-750 transition-colors"
+            className="block w-full py-3.5 bg-slate-50 dark:bg-slate-900/20 border border-slate-200 dark:border-gray-800/80 rounded-xl focus:border-brand-500 focus:ring-2 focus:ring-brand-500/15 focus:outline-none text-2xl font-mono tracking-[0.5em] text-center text-brand-600 dark:text-brand-400 placeholder-slate-350 dark:placeholder-gray-700 transition-colors"
             placeholder="000000"
             required
             disabled={submitting}
@@ -123,11 +123,11 @@ const OTPVerify = () => {
 
         {/* Submit Verify */}
         <motion.button
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
+          whileHover={{ scale: 1.01, boxShadow: '0 4px 15px -1px rgba(15, 122, 242, 0.3)' }}
+          whileTap={{ scale: 0.99 }}
           type="submit"
           disabled={submitting || otp.length !== 6}
-          className="w-full py-3.5 bg-gradient-to-r from-brand-600 to-brand-800 hover:from-brand-500 hover:to-brand-700 text-white rounded-xl text-sm font-bold flex items-center justify-center space-x-2 shadow-lg shadow-brand-500/20 border border-brand-400/20 transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full py-3 bg-brand-500 hover:bg-brand-600 dark:bg-brand-600 dark:hover:bg-brand-500 text-white rounded-xl text-sm font-bold flex items-center justify-center space-x-2 shadow-md shadow-brand-500/10 transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed border border-brand-400/20"
         >
           {submitting ? (
             <>
